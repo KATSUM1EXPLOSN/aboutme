@@ -1,9 +1,24 @@
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dev Profile</title>
+<title>Katsumi — Arcane Developer</title>
+
+<!-- SEO & Social preview -->
+<meta name="description" content="Katsumi — TrinityCore contributor, GM &amp; Sniffer на Luntares.com. WoW, CS2, iPhone collector, 31 год.">
+<meta property="og:title" content="Katsumi — Arcane Developer">
+<meta property="og:description" content="TrinityCore contributor · GM & Sniffer на Luntares.com · WoW · CS2 · 31 год">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://luntares.com/favicon.ico">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Katsumi — Arcane Developer">
+<meta name="twitter:description" content="TrinityCore contributor · GM & Sniffer на Luntares.com">
+
+<!-- Favicon (SVG inline) -->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔮</text></svg>">
+
 <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Crimson+Pro:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -19,18 +34,43 @@
     --ember-glow: #ff8c4a;
     --text: #d4c9aa;
     --text-dim: #7a7060;
+    --bg: #0b0d10;
+    --card-bg: rgba(23,28,40,.95);
+    --card-border: rgba(201,168,76,.18);
+    --life-bg: rgba(17,21,32,.9);
+    --life-border: rgba(201,168,76,.12);
+    --transition: background .4s, color .4s, border-color .4s;
+  }
+
+  [data-theme="light"] {
+    --dark: #f0ede6;
+    --dark2: #e8e4da;
+    --dark3: #ddd9ce;
+    --bg: #f0ede6;
+    --card-bg: rgba(255,252,245,.97);
+    --card-border: rgba(150,100,20,.25);
+    --life-bg: rgba(255,252,245,.9);
+    --life-border: rgba(150,100,20,.18);
+    --text: #2a2318;
+    --text-dim: #6b5e44;
+    --gold: #8c6d1f;
+    --gold-light: #6b4f10;
+    --gold-dim: #9e7f2e;
+    --ember: #c04a1a;
+    --ember-glow: #d45c20;
   }
 
   html { scroll-behavior: smooth; }
 
   body {
-    background: var(--dark);
+    background: var(--bg);
     color: var(--text);
     font-family: 'Crimson Pro', Georgia, serif;
     font-size: 18px;
     font-weight: 300;
     min-height: 100vh;
     overflow-x: hidden;
+    transition: var(--transition);
   }
 
   /* ── BACKGROUND ── */
@@ -197,8 +237,8 @@
   }
 
   .card {
-    background: linear-gradient(135deg, rgba(23,28,40,.95) 0%, rgba(17,21,32,.85) 100%);
-    border: 1px solid rgba(201,168,76,.18);
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
     border-radius: 3px;
     padding: 1.6rem 2rem;
     margin-bottom: 1.2rem;
@@ -262,8 +302,8 @@
   }
 
   .life-item {
-    background: rgba(17,21,32,.9);
-    border: 1px solid rgba(201,168,76,.12);
+    background: var(--life-bg);
+    border: 1px solid var(--life-border);
     border-radius: 3px;
     padding: 1.2rem;
     text-align: center;
@@ -296,9 +336,121 @@
   }
 
   .fade-up.visible { opacity: 1; transform: none; }
+
+  /* ── THEME TOGGLE ── */
+  .theme-toggle {
+    position: fixed;
+    top: 1.2rem;
+    right: 1.2rem;
+    z-index: 999;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    color: var(--text);
+    padding: .5rem .85rem;
+    cursor: pointer;
+    font-size: 1.1rem;
+    border-radius: 3px;
+    transition: all .3s;
+    backdrop-filter: blur(6px);
+    line-height: 1;
+  }
+  .theme-toggle:hover { border-color: var(--gold); transform: scale(1.1) rotate(15deg); }
+
+  /* ── ACTION BUTTONS ── */
+  .action-buttons {
+    display: flex;
+    gap: .9rem;
+    justify-content: center;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    padding: .65rem 1.4rem;
+    border: 1px solid var(--gold-dim);
+    color: var(--gold-light);
+    background: transparent;
+    font-family: 'Cinzel Decorative', serif;
+    font-size: .72rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: all .3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--ember), var(--gold-dim));
+    opacity: 0;
+    transition: opacity .3s;
+  }
+
+  .btn:hover { border-color: var(--ember); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(224,92,42,.25); }
+  .btn:hover::before { opacity: .12; }
+  .btn:active { transform: translateY(0); }
+  .btn span { position: relative; z-index: 1; }
+
+  .btn-copy .icon, .btn-share .icon { position: relative; z-index: 1; font-size: 1rem; }
+
+  /* copy feedback */
+  .btn-copy.copied { border-color: #4caf75; color: #4caf75; }
+
+  /* ── PARTICLES ── */
+  #particles { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+  .particle {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    animation: floatUp linear infinite;
+    opacity: 0;
+  }
+  @keyframes floatUp {
+    0%   { transform: translateY(100vh) translateX(0) scale(1); opacity: 0; }
+    8%   { opacity: .9; }
+    92%  { opacity: .3; }
+    100% { transform: translateY(-40px) translateX(var(--dx, 0px)) scale(.2); opacity: 0; }
+  }
+
+  /* ── SHIMMER on avatar hover ── */
+  .avatar-ring { cursor: default; }
+  .avatar-ring:hover img { transform: scale(1.04); transition: transform .4s ease; }
+  .avatar-ring img { transition: transform .4s ease; }
+
+  /* ── CARD entrance animation ── */
+  @keyframes cardIn {
+    from { opacity: 0; transform: translateY(28px) scale(.97); }
+    to   { opacity: 1; transform: none; }
+  }
+  .fade-up.visible { animation: cardIn .55s cubic-bezier(.22,1,.36,1) both; }
+
+  /* ── MOBILE ── */
+  @media (max-width: 600px) {
+    .hero { padding: 3rem 1.2rem 2rem; }
+    .avatar-ring { width: 160px; height: 160px; }
+    .section { padding: 0 1rem 3rem; }
+    .action-buttons { gap: .6rem; }
+    .btn { font-size: .65rem; padding: .55rem 1rem; }
+    .theme-toggle { top: .7rem; right: .7rem; }
+    h1 { font-size: clamp(1.3rem, 6vw, 2rem); }
+    .life-grid { grid-template-columns: repeat(2, 1fr); }
+    .section-title { font-size: .85rem; }
+  }
+
 </style>
 </head>
 <body>
+
+<button class="theme-toggle" id="themeToggle" title="Переключить тему">🌙</button>
+<div id="particles"></div>
 
 <!-- ── HERO ── -->
 <section class="hero">
@@ -334,6 +486,18 @@
     <p class="tagline">TrinityCore contributor · GM & Sniffer на Luntares.com · 31 год</p>
 
     <p class="scroll-hint">↓ прокрути ниже ↓</p>
+
+    <div class="action-buttons">
+      <button class="btn btn-copy" id="copyBtn" onclick="copyEmail()">
+        <span class="icon">📋</span><span>Скопировать email</span>
+      </button>
+      <button class="btn btn-share" onclick="shareProfile()">
+        <span class="icon">🔗</span><span>Поделиться</span>
+      </button>
+      <a class="btn" href="contribution.html">
+        <span class="icon">⚔️</span><span>Мой вклад в проект</span>
+      </a>
+    </div>
   </div>
 </section>
 
@@ -418,7 +582,7 @@
 </footer>
 
 <script>
-  // fade-up on scroll
+  // ── SCROLL FADE ──
   const els = document.querySelectorAll('.fade-up');
   const io = new IntersectionObserver((entries) => {
     entries.forEach(e => {
@@ -426,6 +590,107 @@
     });
   }, { threshold: 0.12 });
   els.forEach(el => io.observe(el));
+
+  // ── THEME TOGGLE ──
+  const btn = document.getElementById('themeToggle');
+  const saved = localStorage.getItem('theme') || 'dark';
+  applyTheme(saved);
+
+  btn.addEventListener('click', () => {
+    const current = document.documentElement.getAttribute('data-theme') || 'dark';
+    applyTheme(current === 'dark' ? 'light' : 'dark');
+  });
+
+  function applyTheme(t) {
+    document.documentElement.setAttribute('data-theme', t);
+    btn.textContent = t === 'dark' ? '☀️' : '🌙';
+    try { localStorage.setItem('theme', t); } catch(e) {}
+  }
+
+  // ── COPY EMAIL ──
+  function copyEmail() {
+    const email = 'katsumi@luntares.com';
+    const copyBtn = document.getElementById('copyBtn');
+    navigator.clipboard.writeText(email).then(() => {
+      copyBtn.classList.add('copied');
+      copyBtn.querySelector('span:last-child').textContent = 'Скопировано! ✓';
+      setTimeout(() => {
+        copyBtn.classList.remove('copied');
+        copyBtn.querySelector('span:last-child').textContent = 'Скопировать email';
+      }, 2500);
+    }).catch(() => {
+      // fallback
+      const ta = document.createElement('textarea');
+      ta.value = email;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      copyBtn.querySelector('span:last-child').textContent = 'Скопировано! ✓';
+      setTimeout(() => { copyBtn.querySelector('span:last-child').textContent = 'Скопировать email'; }, 2500);
+    });
+  }
+
+  // ── SHARE ──
+  function shareProfile() {
+    const data = {
+      title: 'Katsumi — Arcane Developer',
+      text: 'TrinityCore contributor · GM & Sniffer на Luntares.com',
+      url: window.location.href
+    };
+    if (navigator.share) {
+      navigator.share(data).catch(() => fallbackShare());
+    } else {
+      fallbackShare();
+    }
+  }
+
+  function fallbackShare() {
+    navigator.clipboard.writeText(window.location.href).then(() => {
+      const sb = document.querySelector('.btn-share span:last-child');
+      const orig = sb.textContent;
+      sb.textContent = 'Ссылка скопирована! ✓';
+      setTimeout(() => { sb.textContent = orig; }, 2500);
+    }).catch(() => {});
+  }
+
+  // ── PARTICLES ──
+  const container = document.getElementById('particles');
+  const colors = ['#e05c2a','#c9a84c','#ff8c4a','#e8d08a','#ff6b35'];
+  for (let i = 0; i < 28; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    const size = 1.5 + Math.random() * 3.5;
+    const left = Math.random() * 100;
+    const delay = Math.random() * 16;
+    const dur = 7 + Math.random() * 12;
+    const dx = (Math.random() - .5) * 160;
+    const color = colors[Math.floor(Math.random() * colors.length)];
+    p.style.cssText = `
+      left:${left}%; width:${size}px; height:${size}px;
+      background:${color};
+      box-shadow: 0 0 ${size*2}px ${color};
+      animation-delay:${delay}s; animation-duration:${dur}s;
+      --dx:${dx}px;
+    `;
+    container.appendChild(p);
+  }
+
+  // ── CURSOR GLOW (desktop) ──
+  if (window.matchMedia('(pointer:fine)').matches) {
+    const glow = document.createElement('div');
+    glow.style.cssText = `
+      position:fixed; width:280px; height:280px; border-radius:50%;
+      background:radial-gradient(circle, rgba(224,92,42,.08) 0%, transparent 70%);
+      pointer-events:none; z-index:0; transform:translate(-50%,-50%);
+      transition:left .12s ease, top .12s ease;
+    `;
+    document.body.appendChild(glow);
+    document.addEventListener('mousemove', e => {
+      glow.style.left = e.clientX + 'px';
+      glow.style.top = e.clientY + 'px';
+    });
+  }
 </script>
 </body>
 </html>
