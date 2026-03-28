@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<!-- saved from url=(0058)file:///C:/Users/Administrator/Downloads/contribution.html -->
+<html lang="ru" data-theme="dark"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Мой вклад — Katsumi | TrinityCore</title>
+<meta name="description" content="Вклад Katsumi в TrinityCore — сниффы вылазок WoW Midnight: The Darkway, The Shadow Enclave, The Gulf of Memory, Shadowguard Point.">
+<link rel="icon" href="data:image/svg+xml,&lt;svg xmlns=&#39;http://www.w3.org/2000/svg&#39; viewBox=&#39;0 0 100 100&#39;&gt;&lt;text y=&#39;.9em&#39; font-size=&#39;90&#39;&gt;%E2%9A%94%EF%B8%8F&lt;/text&gt;&lt;/svg&gt;">
+<link href="./contribution_files/css2" rel="stylesheet">
+<style>
+  :root {
+    --gold: #c9a84c; --gold-light: #e8d08a; --gold-dim: #7a6029;
+    --dark: #0b0d10; --dark2: #111520; --dark3: #171c28;
+    --ember: #e05c2a; --ember-glow: #ff8c4a;
+    --purple: #7c3aed; --purple-glow: #a855f7;
+    --green: #4ade80; --green-dim: #16a34a;
+    --text: #d4c9aa; --text-dim: #7a7060;
+    --card-bg: rgba(23,28,40,.97); --card-border: rgba(201,168,76,.18);
+    --bg: #0b0d10;
+  }
+  [data-theme="light"] {
+    --bg: #f0ede6; --dark: #f0ede6; --dark2: #e8e4da; --dark3: #ddd9ce;
+    --card-bg: rgba(255,252,245,.97); --card-border: rgba(130,90,20,.22);
+    --text: #2a2318; --text-dim: #6b5e44;
+    --gold: #8c6d1f; --gold-light: #6b4f10; --gold-dim: #9e7f2e;
+    --ember: #c04a1a; --ember-glow: #d45c20;
+    --purple: #6d28d9; --purple-glow: #7c3aed;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg); color: var(--text);
+    font-family: 'Crimson Pro', Georgia, serif;
+    font-size: 17px; font-weight: 300; min-height: 100vh;
+    overflow-x: hidden; transition: background .4s, color .4s;
+  }
+  body::before {
+    content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+    background:
+      radial-gradient(ellipse 70% 45% at 50% -5%, rgba(124,58,237,.13) 0%, transparent 65%),
+      radial-gradient(ellipse 35% 55% at 90% 100%, rgba(224,92,42,.09) 0%, transparent 55%),
+      repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(124,58,237,.01) 3px, rgba(124,58,237,.01) 4px);
+  }
+
+  /* ── FIXED CONTROLS ── */
+  .nav-back {
+    position: fixed; top: 1rem; left: 1rem; z-index: 999;
+    display: inline-flex; align-items: center; gap: .45rem;
+    background: var(--card-bg); border: 1px solid var(--card-border);
+    color: var(--gold-light); padding: .45rem .95rem;
+    font-family: 'Cinzel', serif; font-size: .7rem; letter-spacing: .14em;
+    text-transform: uppercase; text-decoration: none; border-radius: 2px;
+    backdrop-filter: blur(8px); transition: all .25s;
+  }
+  .nav-back:hover { border-color: var(--ember); color: var(--ember-glow); transform: translateX(-2px); }
+  .theme-toggle {
+    position: fixed; top: 1rem; right: 1rem; z-index: 999;
+    background: var(--card-bg); border: 1px solid var(--card-border);
+    color: var(--text); padding: .45rem .8rem; cursor: pointer;
+    font-size: 1rem; border-radius: 2px; backdrop-filter: blur(8px);
+    transition: all .25s; line-height: 1;
+  }
+  .theme-toggle:hover { border-color: var(--gold); transform: scale(1.12) rotate(12deg); }
+
+  /* ── PARTICLES ── */
+  #particles { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+  .particle {
+    position: absolute; border-radius: 50%; pointer-events: none;
+    animation: floatUp linear infinite; opacity: 0;
+  }
+  @keyframes floatUp {
+    0%   { transform: translateY(100vh) scale(1); opacity: 0; }
+    8%   { opacity: .85; }
+    92%  { opacity: .2; }
+    100% { transform: translateY(-40px) translateX(var(--dx,0)) scale(.2); opacity: 0; }
+  }
+
+  /* ── PAGE HERO ── */
+  .page-hero {
+    position: relative; z-index: 1;
+    text-align: center; padding: 5.5rem 2rem 2.5rem;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: .6rem;
+    border: 1px solid rgba(124,58,237,.4); padding: .3rem 1rem;
+    margin-bottom: 1.4rem; font-size: .7rem; letter-spacing: .28em;
+    text-transform: uppercase; color: var(--purple-glow);
+    background: rgba(124,58,237,.07); border-radius: 2px;
+    animation: badgePulse 3s ease-in-out infinite alternate;
+  }
+  @keyframes badgePulse {
+    from { box-shadow: 0 0 0 rgba(168,85,247,0); }
+    to   { box-shadow: 0 0 16px rgba(168,85,247,.3); }
+  }
+  .page-hero h1 {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(1.55rem, 4.5vw, 2.7rem);
+    color: var(--gold-light);
+    text-shadow: 0 0 40px rgba(201,168,76,.4);
+    line-height: 1.2; margin-bottom: .7rem;
+    animation: titleIn .7s cubic-bezier(.22,1,.36,1) both;
+  }
+  @keyframes titleIn {
+    from { opacity: 0; transform: translateY(-18px); }
+    to   { opacity: 1; transform: none; }
+  }
+  .page-hero .subtitle { font-style: italic; color: var(--text-dim); font-size: .95rem; letter-spacing: .1em; }
+
+  /* ── STATUS BANNER ── */
+  .status-banner {
+    position: relative; z-index: 1;
+    max-width: 780px; margin: 0 auto 2.5rem; padding: 0 1.5rem;
+  }
+  .status-box {
+    background: linear-gradient(135deg, rgba(74,222,128,.08), rgba(22,163,74,.05));
+    border: 1px solid rgba(74,222,128,.35);
+    border-radius: 3px; padding: 1.1rem 1.4rem;
+    display: flex; align-items: flex-start; gap: .9rem;
+    animation: cardIn .6s cubic-bezier(.22,1,.36,1) both;
+  }
+  .status-icon { font-size: 1.4rem; margin-top: .05rem; flex-shrink: 0; }
+  .status-text h3 {
+    font-family: 'Cinzel', serif; font-size: .8rem; letter-spacing: .18em;
+    text-transform: uppercase; color: var(--green); margin-bottom: .3rem;
+  }
+  .status-text p { font-size: .92rem; line-height: 1.6; color: var(--text); }
+  .status-text strong { color: var(--green); font-weight: 400; }
+
+  /* ── DIVIDER ── */
+  .divider {
+    text-align: center; padding: 0 2rem; margin: 1.2rem auto;
+    max-width: 700px; position: relative; z-index: 1;
+  }
+  .divider::before, .divider::after {
+    content: ''; display: inline-block; width: 36%; height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold-dim), transparent);
+    vertical-align: middle;
+  }
+  .divider span { color: var(--gold); font-size: 1.3rem; padding: 0 .9rem; }
+
+  /* ── SECTION ── */
+  .section {
+    position: relative; z-index: 1;
+    max-width: 780px; margin: 0 auto; padding: 0 1.5rem 3.5rem;
+  }
+  .section-title {
+    font-family: 'Cinzel Decorative', serif; font-size: .92rem;
+    letter-spacing: .18em; color: var(--ember-glow); text-transform: uppercase;
+    margin-bottom: 1.6rem; display: flex; align-items: center; gap: .7rem;
+  }
+  .section-title::after {
+    content: ''; flex: 1; height: 1px;
+    background: linear-gradient(to right, var(--ember), transparent); opacity: .4;
+  }
+
+  /* ── DELVE CARD ── */
+  .delve-card {
+    background: var(--card-bg); border: 1px solid var(--card-border);
+    border-radius: 3px; margin-bottom: 1.4rem; overflow: hidden;
+    animation: cardIn .55s cubic-bezier(.22,1,.36,1) both;
+    transition: border-color .3s, box-shadow .3s;
+  }
+  .delve-card:nth-child(2) { animation-delay: .07s; }
+  .delve-card:nth-child(3) { animation-delay: .14s; }
+  .delve-card:nth-child(4) { animation-delay: .21s; }
+  @keyframes cardIn {
+    from { opacity: 0; transform: translateY(22px) scale(.97); }
+    to   { opacity: 1; transform: none; }
+  }
+  .delve-card:hover { border-color: rgba(168,85,247,.4); box-shadow: 0 6px 32px rgba(124,58,237,.14); }
+
+  .delve-header {
+    padding: 1.3rem 1.6rem;
+    border-bottom: 1px solid var(--card-border);
+    display: flex; align-items: flex-start; gap: 1rem; flex-wrap: wrap;
+  }
+  .delve-icon { font-size: 2rem; flex-shrink: 0; margin-top: .1rem; }
+  .delve-header-text { flex: 1; min-width: 180px; }
+  .delve-zone {
+    font-size: .68rem; letter-spacing: .22em; text-transform: uppercase;
+    color: var(--text-dim); margin-bottom: .2rem;
+  }
+  .delve-name {
+    font-family: 'Cinzel', serif; font-size: 1.25rem;
+    color: var(--gold-light); line-height: 1.2;
+  }
+  .delve-type-badge {
+    display: inline-flex; align-items: center; gap: .35rem;
+    font-size: .67rem; letter-spacing: .18em; text-transform: uppercase;
+    color: var(--purple-glow); padding: .18rem .65rem;
+    border: 1px solid rgba(168,85,247,.3); border-radius: 2px;
+    background: rgba(124,58,237,.07); margin-top: .4rem;
+  }
+
+  .delve-body { padding: 1.3rem 1.6rem; }
+
+  .delve-desc { font-size: .97rem; line-height: 1.72; margin-bottom: 1.1rem; color: var(--text); }
+
+  /* info rows */
+  .info-row {
+    display: flex; gap: .55rem; align-items: flex-start;
+    padding: .55rem 0; border-bottom: 1px solid rgba(201,168,76,.07);
+    font-size: .92rem; line-height: 1.6;
+  }
+  .info-row:last-of-type { border-bottom: none; }
+  .info-icon { flex-shrink: 0; font-size: .95rem; margin-top: .15rem; width: 1.2rem; text-align: center; }
+
+  /* boss block */
+  .boss-block {
+    background: rgba(0,0,0,.18); border-left: 3px solid var(--ember);
+    padding: .9rem 1.1rem; margin: 1rem 0; border-radius: 0 2px 2px 0;
+  }
+  [data-theme="light"] .boss-block { background: rgba(0,0,0,.04); }
+  .boss-label {
+    font-family: 'Cinzel', serif; font-size: .68rem; letter-spacing: .2em;
+    text-transform: uppercase; color: var(--ember-glow); margin-bottom: .45rem;
+    display: flex; align-items: center; gap: .4rem;
+  }
+  .boss-name { color: var(--purple-glow); }
+  .spell-name { color: var(--gold); }
+  .tip-green  { color: var(--green); }
+
+  /* tags */
+  .tags { display: flex; flex-wrap: wrap; gap: .45rem; margin-top: 1rem; }
+  .tag {
+    font-size: .68rem; padding: .18rem .7rem;
+    border: 1px solid var(--gold-dim); color: var(--gold-dim);
+    letter-spacing: .1em; text-transform: uppercase; border-radius: 2px;
+    transition: all .2s;
+  }
+  .tag:hover { color: var(--gold-light); border-color: var(--gold); background: rgba(201,168,76,.07); }
+  .tag.done { border-color: var(--green-dim); color: var(--green); }
+
+  /* ── FOOTER ── */
+  footer {
+    position: relative; z-index: 1; text-align: center;
+    padding: 2rem; color: var(--text-dim); font-size: .82rem;
+    font-style: italic; border-top: 1px solid rgba(201,168,76,.1); margin-top: 1rem;
+  }
+
+  /* ── MOBILE ── */
+  @media (max-width: 580px) {
+    .page-hero { padding: 4.5rem 1.1rem 2rem; }
+    .section { padding: 0 .9rem 2.5rem; }
+    .delve-header { padding: 1rem 1.1rem; }
+    .delve-body { padding: 1rem 1.1rem; }
+    .nav-back span { display: none; }
+    .status-box { flex-direction: column; gap: .5rem; }
+  }
+</style>
+</head>
+<body>
+
+<a class="nav-back" href="file:///C:/Users/Administrator/Downloads/index.html">← <span>На главную</span></a>
+<button class="theme-toggle" id="themeToggle">☀️</button>
+<div id="particles"><div class="particle" style="left: 56.0468%; width: 3.26792px; height: 3.26792px; background: rgb(124, 58, 237); box-shadow: rgb(124, 58, 237) 0px 0px 8.16979px; animation-delay: 13.9538s; animation-duration: 19.0088s; --dx: -67.99451713136129px;"></div><div class="particle" style="left: 3.66849%; width: 2.0872px; height: 2.0872px; background: rgb(124, 58, 237); box-shadow: rgb(124, 58, 237) 0px 0px 5.21801px; animation-delay: 0.522384s; animation-duration: 11.771s; --dx: -14.317061786502332px;"></div><div class="particle" style="left: 31.64%; width: 3.03268px; height: 3.03268px; background: rgb(124, 58, 237); box-shadow: rgb(124, 58, 237) 0px 0px 7.5817px; animation-delay: 15.1746s; animation-duration: 15.5826s; --dx: 24.271207218179146px;"></div><div class="particle" style="left: 32.9683%; width: 4.49371px; height: 4.49371px; background: rgb(124, 58, 237); box-shadow: rgb(124, 58, 237) 0px 0px 11.2343px; animation-delay: 15.3341s; animation-duration: 11.9954s; --dx: 16.389195907601728px;"></div><div class="particle" style="left: 67.1185%; width: 2.85722px; height: 2.85722px; background: rgb(124, 58, 237); box-shadow: rgb(124, 58, 237) 0px 0px 7.14306px; animation-delay: 13.6757s; animation-duration: 17.4553s; --dx: 57.046346811793484px;"></div><div class="particle" style="left: 39.4945%; width: 1.6179px; height: 1.6179px; background: rgb(168, 85, 247); box-shadow: rgb(168, 85, 247) 0px 0px 4.04475px; animation-delay: 15.0195s; animation-duration: 15.3101s; --dx: -73.34068766591416px;"></div><div class="particle" style="left: 18.7528%; width: 3.51718px; height: 3.51718px; background: rgb(168, 85, 247); box-shadow: rgb(168, 85, 247) 0px 0px 8.79294px; animation-delay: 15.0975s; animation-duration: 12.7654s; --dx: -9.047645012760636px;"></div><div class="particle" style="left: 53.7875%; width: 4.37304px; height: 4.37304px; background: rgb(168, 85, 247); box-shadow: rgb(168, 85, 247) 0px 0px 10.9326px; animation-delay: 2.64379s; animation-duration: 11.1855s; --dx: -30.12678252648811px;"></div><div class="particle" style="left: 11.1578%; width: 3.27653px; height: 3.27653px; background: rgb(168, 85, 247); box-shadow: rgb(168, 85, 247) 0px 0px 8.19133px; animation-delay: 4.21942s; animation-duration: 18.3323s; --dx: 59.82043559029156px;"></div><div class="particle" style="left: 88.5898%; width: 2.03322px; height: 2.03322px; background: rgb(168, 85, 247); box-shadow: rgb(168, 85, 247) 0px 0px 5.08306px; animation-delay: 15.6071s; animation-duration: 18.9488s; --dx: 59.35900417552849px;"></div><div class="particle" style="left: 77.2734%; width: 4.42982px; height: 4.42982px; background: rgb(201, 168, 76); box-shadow: rgb(201, 168, 76) 0px 0px 11.0745px; animation-delay: 14.5184s; animation-duration: 8.83531s; --dx: -56.964221525397924px;"></div><div class="particle" style="left: 67.9876%; width: 1.91466px; height: 1.91466px; background: rgb(201, 168, 76); box-shadow: rgb(201, 168, 76) 0px 0px 4.78665px; animation-delay: 1.56413s; animation-duration: 15.7063s; --dx: -70.92916697525108px;"></div><div class="particle" style="left: 47.9927%; width: 2.90112px; height: 2.90112px; background: rgb(201, 168, 76); box-shadow: rgb(201, 168, 76) 0px 0px 7.25279px; animation-delay: 13.2759s; animation-duration: 9.55972s; --dx: -19.779305972860445px;"></div><div class="particle" style="left: 99.8806%; width: 3.47161px; height: 3.47161px; background: rgb(201, 168, 76); box-shadow: rgb(201, 168, 76) 0px 0px 8.67902px; animation-delay: 14.3703s; animation-duration: 10.67s; --dx: 4.058240069297797px;"></div><div class="particle" style="left: 4.61821%; width: 3.43367px; height: 3.43367px; background: rgb(201, 168, 76); box-shadow: rgb(201, 168, 76) 0px 0px 8.58418px; animation-delay: 12.2515s; animation-duration: 14.801s; --dx: 10.109179127876011px;"></div><div class="particle" style="left: 9.6729%; width: 3.40525px; height: 3.40525px; background: rgb(224, 92, 42); box-shadow: rgb(224, 92, 42) 0px 0px 8.51313px; animation-delay: 3.42821s; animation-duration: 8.55834s; --dx: 45.79410602101668px;"></div><div class="particle" style="left: 77.8754%; width: 2.12593px; height: 2.12593px; background: rgb(224, 92, 42); box-shadow: rgb(224, 92, 42) 0px 0px 5.31484px; animation-delay: 5.03828s; animation-duration: 17.5639s; --dx: 56.14718446953447px;"></div><div class="particle" style="left: 21.0356%; width: 2.99597px; height: 2.99597px; background: rgb(224, 92, 42); box-shadow: rgb(224, 92, 42) 0px 0px 7.48991px; animation-delay: 11.3891s; animation-duration: 8.21512s; --dx: -73.06231513325069px;"></div><div class="particle" style="left: 44.4478%; width: 1.67582px; height: 1.67582px; background: rgb(224, 92, 42); box-shadow: rgb(224, 92, 42) 0px 0px 4.18956px; animation-delay: 7.4601s; animation-duration: 14.6215s; --dx: -0.33339016615225314px;"></div><div class="particle" style="left: 15.6109%; width: 2.24876px; height: 2.24876px; background: rgb(224, 92, 42); box-shadow: rgb(224, 92, 42) 0px 0px 5.6219px; animation-delay: 7.00148s; animation-duration: 18.8725s; --dx: 23.257321506341285px;"></div><div class="particle" style="left: 29.5507%; width: 3.79864px; height: 3.79864px; background: rgb(74, 222, 128); box-shadow: rgb(74, 222, 128) 0px 0px 9.49661px; animation-delay: 6.29456s; animation-duration: 11.1373s; --dx: -61.66923627155583px;"></div><div class="particle" style="left: 18.1752%; width: 2.94066px; height: 2.94066px; background: rgb(74, 222, 128); box-shadow: rgb(74, 222, 128) 0px 0px 7.35164px; animation-delay: 9.03833s; animation-duration: 12.6818s; --dx: -1.664765701412485px;"></div><div class="particle" style="left: 3.81248%; width: 2.06655px; height: 2.06655px; background: rgb(74, 222, 128); box-shadow: rgb(74, 222, 128) 0px 0px 5.16636px; animation-delay: 0.654137s; animation-duration: 13.5098s; --dx: -24.238202852829048px;"></div><div class="particle" style="left: 70.3338%; width: 1.63345px; height: 1.63345px; background: rgb(74, 222, 128); box-shadow: rgb(74, 222, 128) 0px 0px 4.08363px; animation-delay: 1.7051s; animation-duration: 19.0626s; --dx: -49.40111583342689px;"></div><div class="particle" style="left: 86.3476%; width: 3.64648px; height: 3.64648px; background: rgb(74, 222, 128); box-shadow: rgb(74, 222, 128) 0px 0px 9.11619px; animation-delay: 9.46774s; animation-duration: 11.899s; --dx: 18.456676122068206px;"></div></div>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="hero-badge">⚔ Luntares · WoW Midnight · Contributor</div>
+  <h1>Мой вклад в проект</h1>
+  <p class="subtitle">Вылазки (Delves) · WoW: Midnight · Снифы отправлены в разработку</p>
+</div>
+
+<!-- STATUS -->
+<div class="status-banner">
+  <div class="status-box">
+    <div class="status-icon">✅</div>
+    <div class="status-text">
+      <h3>Статус: отправлено в разработку</h3>
+      <p>По всем четырём вылазкам выполнены <strong>снифы пакетов</strong> (packet sniffing) — записаны данные механик, абилок боссов, скриптов мобов и ивентов. Все материалы переданы в команду разработчиков Luntares для имплементации.</p>
+    </div>
+  </div>
+</div>
+
+<div class="divider"><span>◈</span></div>
+
+<!-- DELVES -->
+<section class="section">
+  <h2 class="section-title">Вылазки</h2>
+
+  <!-- 1. THE DARKWAY -->
+  <div class="delve-card">
+    <div class="delve-header">
+      <div class="delve-icon">🌑</div>
+      <div class="delve-header-text">
+        <div class="delve-zone">Silvermoon City · Eversong Woods</div>
+        <div class="delve-name">The Darkway</div>
+        <div class="delve-type-badge">🗡 Вылазка · WoW: Midnight</div>
+      </div>
+    </div>
+    <div class="delve-body">
+      <p class="delve-desc">
+        Вылазка расположена в северной части Silvermoon City — вход находится на пристани с северной стороны города, на корабле. Действие разворачивается внутри Arcway, древних аркановых тоннелей под Сурамаром, захваченных оперативниками Twilight's Blade.
+      </p>
+
+      <div class="boss-block">
+        <div class="boss-label">🔴 ФИНАЛЬНЫЙ БОСС</div>
+        <div class="info-row">
+          <span class="info-icon">👤</span>
+          <span><span class="boss-name">Infiltrator Gulkat (Twilight Gulkat)</span> — финальный босс всех вариантов вылазки.</span>
+        </div>
+        <div class="info-row">
+          <span class="info-icon">🔥</span>
+          <span><span class="spell-name">Abyssal Burst</span> — широкий конус перед боссом. Отходи в сторону.</span>
+        </div>
+        <div class="info-row">
+          <span class="info-icon">👻</span>
+          <span><span class="spell-name">Illusory Deceit</span> — призывает 5–6 иллюзий с фиолетовыми кругами. Они взрываются по окончании каста, держись подальше от кругов.</span>
+        </div>
+        <div class="info-row">
+          <span class="info-icon">⚡</span>
+          <span><span class="spell-name">Shadow Bolt</span> — прерываемый каст одиночной цели. Всегда прерывать.</span>
+        </div>
+      </div>
+
+      <div class="info-row">
+        <span class="info-icon">📋</span>
+        <span><b>Варианты ивентов:</b> Focusers Under Pressure, Leyline Technician, Ogre Powered. Ротируются ежедневно.</span>
+      </div>
+      <div class="info-row">
+        <span class="info-icon">🗺</span>
+        <span><b>Механика:</b> Arcane Arteries — магические потоки, дамажащие землю. Поиск и возврат Ley Line Focusers / кристаллов.</span>
+      </div>
+
+      <div class="tags">
+        <span class="tag done">✓ Сниф сделан</span>
+        <span class="tag done">✓ Отправлено в разработку</span>
+        <span class="tag">Eversong Woods</span>
+        <span class="tag">Twilight's Blade</span>
+        <span class="tag">Arcway</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. THE SHADOW ENCLAVE -->
+  <div class="delve-card">
+    <div class="delve-header">
+      <div class="delve-icon">🕸</div>
+      <div class="delve-header-text">
+        <div class="delve-zone">Ruins of Deathholme · Eversong Woods (SW)</div>
+        <div class="delve-name">The Shadow Enclave</div>
+        <div class="delve-type-badge">🗡 Вылазка · WoW: Midnight</div>
+      </div>
+    </div>
+    <div class="delve-body">
+      <p class="delve-desc">
+        Секретная база Twilight's Blade на юго-западе Eversong Woods, у руин Deathholme. Здесь культисты проводят тёмные эксперименты и призывают Void-существ. Вылазка обязательна в рамках основного сюжета зоны.
+      </p>
+
+      <div class="info-row">
+        <span class="info-icon">👁</span>
+        <span><b>Механика зоны:</b> <span class="spell-name">Eyes of Antenorian</span> — патрульные глаза-наблюдатели. При обнаружении игрока наносят тяжёлый дамаг конусом и отбрасывают. Конус также дамажит мобов — можно использовать против элитных врагов.</span>
+      </div>
+
+      <div class="boss-block">
+        <div class="boss-label">🔴 ФИНАЛЬНЫЙ БОСС</div>
+        <div class="info-row">
+          <span class="info-icon">👤</span>
+          <span><span class="boss-name">Lord Antenorian</span> — бывший мэр Tranquillien, лидер Twilight's Blade. Один из самых сложных боссов вылазок Midnight.</span>
+        </div>
+        <div class="info-row">
+          <span class="info-icon">⚡</span>
+          <span><span class="spell-name">Shadow Bolt</span> — частый прерываемый каст. Прерывание также перепозиционирует босса после телепорта.</span>
+        </div>
+        <div class="info-row">
+          <span class="info-icon">💨</span>
+          <span><span class="spell-name">Teleport</span> — босс телепортируется, оставляя лужу DoT на месте прыжка. Не стоять в луже.</span>
+        </div>
+        <div class="info-row">
+          <span class="info-icon">💀</span>
+          <span><span class="spell-name">Shadowveil Annihilation</span> — долгий каст-иммьюн. Призывает 3 Shadow Orb, два из которых защищены щитом. Уничтожь незащищённый орб — один из щитовых откроется. Уничтожь все три — щит спадёт, босс оглушится и получит доп. дамаг. Провал = мгновенная смерть всех.</span>
+        </div>
+      </div>
+
+      <div class="info-row">
+        <span class="info-icon">📋</span>
+        <span><b>Варианты ивентов:</b> Traitor's Due, Shadowy Supplies, Mirror Shine (несёшь зеркала, отражаешь свет — иначе тебя съедает Hungry Grue).</span>
+      </div>
+
+      <div class="tags">
+        <span class="tag done">✓ Сниф сделан</span>
+        <span class="tag done">✓ Отправлено в разработку</span>
+        <span class="tag">Eversong Woods</span>
+        <span class="tag">Lord Antenorian</span>
+        <span class="tag">Twilight's Blade</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. THE GULF OF MEMORY -->
+  <div class="delve-card">
+    <div class="delve-header">
+      <div class="delve-icon">🌊</div>
+      <div class="delve-header-text">
+        <div class="delve-zone">Harandar · между Den of Echoes и Har'alnor</div>
+        <div class="delve-name">The Gulf of Memory</div>
+        <div class="delve-type-badge">🗡 Вылазка · WoW: Midnight</div>
+      </div>
+    </div>
+    <div class="delve-body">
+      <p class="delve-desc">
+        Прибрежные пещеры в западной части Harandar. Одна из двух вылазок зоны — механически более сложная, с тремя полностью различными вариантами ивентов, двумя боссами с разными механиками и постоянной угрозой с потолка.
+      </p>
+
+      <div class="info-row">
+        <span class="info-icon">⚠</span>
+        <span><b>Опасность окружения:</b> Хищники на потолке — следи за потолком, могут утащить вверх.</span>
+      </div>
+      <div class="info-row">
+        <span class="info-icon">🦋</span>
+        <span><b>Механика ивента:</b> Moths (мотыльки) для сдерживания распространения Lightbloom через Alnmoth Storm. Экшн-способность: пожирать кусты Lightbloom или атаковать врагов Rutaani.</span>
+      </div>
+
+      <div class="boss-block">
+        <div class="boss-label">🔴 ФИНАЛЬНЫЙ БОСС (один из вариантов)</div>
+        <div class="info-row">
+          <span class="info-icon">👤</span>
+          <span><span class="boss-name">Mul'tha'ul</span> — Faceless One. Один из сложнейших боссов вылазок Midnight.</span>
+        </div>
+        <div class="info-row">
+          <span class="info-icon">💀</span>
+          <span><span class="spell-name">Hopeless Curse</span> — прерываемое проклятие: стакающийся Shadow DoT, −40% скорости движения, −20% к скорости атаки/каста. Прерывать в приоритете. Если зашло — диспел немедленно.</span>
+        </div>
+        <div class="info-row">
+          <span class="info-icon">🦑</span>
+          <span><span class="spell-name">Unanswered Call</span> — фиксация + щупальца на пути кайта. Держи босса по центру.</span>
+        </div>
+      </div>
+
+      <div class="info-row">
+        <span class="info-icon">📋</span>
+        <span><b>Варианты ивентов:</b> три полностью разных варианта с разным составом врагов, NPC-диалогами и механиками.</span>
+      </div>
+
+      <div class="tags">
+        <span class="tag done">✓ Сниф сделан</span>
+        <span class="tag done">✓ Отправлено в разработку</span>
+        <span class="tag">Harandar</span>
+        <span class="tag">Mul'tha'ul</span>
+        <span class="tag">Faceless One</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. SHADOWGUARD POINT -->
+  <div class="delve-card">
+    <div class="delve-header">
+      <div class="delve-icon">🔮</div>
+      <div class="delve-header-text">
+        <div class="delve-zone">Voidstorm · севернее Abundant Voidburrow (запад)</div>
+        <div class="delve-name">Shadowguard Point</div>
+        <div class="delve-type-badge">🗡 Вылазка · WoW: Midnight</div>
+      </div>
+    </div>
+    <div class="delve-body">
+      <p class="delve-desc">
+        Исследовательский форпост эфириалов Shadowguard в западной части Voidstorm. Вход расположен на восточной стороне моста через ущелье. Здесь эфириалы Shadowguard проводят эксперименты под покровительством Xal'atath.
+      </p>
+
+      <div class="info-row">
+        <span class="info-icon">💣</span>
+        <span><b>Ивент 1:</b> Вторжение в Shadowguard Point — перегрузка Void Stabilizers, уничтожение как можно большего числа эфириалов.</span>
+      </div>
+      <div class="info-row">
+        <span class="info-icon">🔫</span>
+        <span><b>Ивент 2:</b> «Заимствованная винтовка» — дестабилизируй контейнеры маны, которые Shadowguard наполняет магией. Одна цель, финальный босс открывается после перегрузки достаточного числа контейнеров.</span>
+      </div>
+
+      <div class="boss-block">
+        <div class="boss-label">🔴 ФИНАЛЬНЫЙ БОСС</div>
+        <div class="info-row">
+          <span class="info-icon">👤</span>
+          <span><span class="boss-name">Chief-Arcanist Patram</span> — финальный босс всех вариантов. Один из более лёгких боссов Midnight.</span>
+        </div>
+        <div class="info-row">
+          <span class="info-icon">⚡</span>
+          <span><span class="spell-name">Void Bolt</span> — прерывать всегда.</span>
+        </div>
+        <div class="info-row">
+          <span class="info-icon">👿</span>
+          <span><span class="spell-name">Dark Communion</span> — призывает Void Emissary. Убей эмиссара до окончания каста <span class="spell-name">Submit to the Void</span>. Успеешь — получишь бафф на Versatility и снижение кулдаунов. Провалишь — бафф уйдёт боссу.</span>
+        </div>
+        <div class="info-row">
+          <span class="info-icon">🔵</span>
+          <span><span class="spell-name">Discordant Hymn</span> — создаёт зоны пустоты, наносящие дамаг и замедляющие. Не стоять.</span>
+        </div>
+      </div>
+
+      <div class="tags">
+        <span class="tag done">✓ Сниф сделан</span>
+        <span class="tag done">✓ Отправлено в разработку</span>
+        <span class="tag">Voidstorm</span>
+        <span class="tag">Chief-Arcanist Patram</span>
+        <span class="tag">Shadowguard Ethereals</span>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<footer>
+  Данные получены методом packet sniffing · Luntares.com · WoW: Midnight
+</footer>
+
+<script>
+  const btn = document.getElementById('themeToggle');
+  const saved = (() => { try { return localStorage.getItem('theme'); } catch(e) { return null; } })() || 'dark';
+  applyTheme(saved);
+  btn.addEventListener('click', () => applyTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'));
+  function applyTheme(t) {
+    document.documentElement.setAttribute('data-theme', t);
+    btn.textContent = t === 'dark' ? '☀️' : '🌙';
+    try { localStorage.setItem('theme', t); } catch(e) {}
+  }
+
+  // particles
+  const pc = document.getElementById('particles');
+  ['#7c3aed','#a855f7','#c9a84c','#e05c2a','#4ade80'].forEach((c, ci) => {
+    for (let i = 0; i < 5; i++) {
+      const p = document.createElement('div');
+      p.className = 'particle';
+      const s = 1.5 + Math.random() * 3;
+      p.style.cssText = `left:${Math.random()*100}%;width:${s}px;height:${s}px;background:${c};box-shadow:0 0 ${s*2.5}px ${c};animation-delay:${Math.random()*16}s;animation-duration:${8+Math.random()*12}s;--dx:${(Math.random()-.5)*150}px`;
+      pc.appendChild(p);
+    }
+  });
+
+  // cursor glow
+  if (window.matchMedia('(pointer:fine)').matches) {
+    const g = document.createElement('div');
+    g.style.cssText = 'position:fixed;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(124,58,237,.07) 0%,transparent 70%);pointer-events:none;z-index:0;transform:translate(-50%,-50%);transition:left .1s,top .1s';
+    document.body.appendChild(g);
+    document.addEventListener('mousemove', e => { g.style.left=e.clientX+'px'; g.style.top=e.clientY+'px'; });
+  }
+</script><div style="position: fixed; width: 280px; height: 280px; border-radius: 50%; background: radial-gradient(circle, rgba(124, 58, 237, 0.07) 0%, transparent 70%); pointer-events: none; z-index: 0; transform: translate(-50%, -50%); transition: left 0.1s, top 0.1s; left: 870px; top: 574px;"></div>
+
+
+</body></html>
