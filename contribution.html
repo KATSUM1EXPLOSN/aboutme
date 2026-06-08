@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Мой вклад — Katsumi | Luntares</title>
-<meta name="description" content="Вклад Katsumi в Luntares — снифы подземелий, рейдов и вылазок WoW Midnight.">
+<title>Мой вклад — Katsumi | TrinityCore</title>
+<meta name="description" content="Вклад Katsumi в TrinityCore — снифы подземелий, рейдов и вылазок WoW Midnight.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚔️</text></svg>">
 <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cinzel:wght@400;600&family=Crimson+Pro:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
 <style>
@@ -27,18 +27,18 @@
   html{scroll-behavior:smooth}
   body{background:var(--bg);color:var(--text);font-family:'Crimson Pro',Georgia,serif;font-size:16px;font-weight:300;min-height:100vh;overflow-x:hidden;transition:background .4s,color .4s}
   body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(ellipse 70% 45% at 50% -5%,rgba(124,58,237,.12) 0%,transparent 65%),radial-gradient(ellipse 35% 55% at 90% 100%,rgba(224,92,42,.08) 0%,transparent 55%)}
- 
+
   /* CONTROLS */
   .nav-back{position:fixed;top:1rem;left:1rem;z-index:999;display:inline-flex;align-items:center;gap:.4rem;background:var(--card-bg);border:1px solid var(--card-border);color:var(--gold-light);padding:.4rem .9rem;font-family:'Cinzel',serif;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;border-radius:2px;backdrop-filter:blur(8px);transition:all .25s}
   .nav-back:hover{border-color:var(--ember);color:var(--ember-glow);transform:translateX(-2px)}
   .theme-toggle{position:fixed;top:1rem;right:1rem;z-index:999;background:var(--card-bg);border:1px solid var(--card-border);color:var(--text);padding:.4rem .75rem;cursor:pointer;font-size:.95rem;border-radius:2px;backdrop-filter:blur(8px);transition:all .25s;line-height:1}
   .theme-toggle:hover{border-color:var(--gold);transform:scale(1.12) rotate(12deg)}
- 
+
   /* PARTICLES */
   #particles{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
   .particle{position:absolute;border-radius:50%;animation:floatUp linear infinite;opacity:0}
   @keyframes floatUp{0%{transform:translateY(100vh) scale(1);opacity:0}8%{opacity:.8}92%{opacity:.15}100%{transform:translateY(-40px) translateX(var(--dx,0)) scale(.2);opacity:0}}
- 
+
   /* HERO */
   .page-hero{position:relative;z-index:1;text-align:center;padding:5.5rem 2rem 2rem}
   .hero-badge{display:inline-flex;align-items:center;gap:.5rem;border:1px solid rgba(124,58,237,.4);padding:.28rem .9rem;margin-bottom:1.2rem;font-size:.68rem;letter-spacing:.26em;text-transform:uppercase;color:var(--purple-glow);background:rgba(124,58,237,.07);border-radius:2px;animation:badgePulse 3s ease-in-out infinite alternate}
@@ -46,7 +46,7 @@
   .page-hero h1{font-family:'Cinzel Decorative',serif;font-size:clamp(1.5rem,4vw,2.5rem);color:var(--gold-light);text-shadow:0 0 35px rgba(201,168,76,.38);line-height:1.2;margin-bottom:.6rem;animation:titleIn .7s cubic-bezier(.22,1,.36,1) both}
   @keyframes titleIn{from{opacity:0;transform:translateY(-16px)}to{opacity:1;transform:none}}
   .page-hero .sub{font-style:italic;color:var(--text-dim);font-size:.9rem;letter-spacing:.1em}
- 
+
   /* STATUS */
   .status-wrap{position:relative;z-index:1;max-width:760px;margin:.5rem auto 1.5rem;padding:0 1.2rem}
   .status-box{background:linear-gradient(135deg,rgba(74,222,128,.07),rgba(22,163,74,.04));border:1px solid rgba(74,222,128,.32);border-radius:2px;padding:.9rem 1.2rem;display:flex;align-items:flex-start;gap:.8rem}
@@ -54,22 +54,22 @@
   .status-text h3{font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--green);margin-bottom:.25rem}
   .status-text p{font-size:.9rem;line-height:1.6}
   .status-text strong{color:var(--green);font-weight:400}
- 
+
   /* DIVIDER */
   .divider{text-align:center;padding:0 2rem;margin:.8rem auto;max-width:700px;position:relative;z-index:1}
   .divider::before,.divider::after{content:'';display:inline-block;width:36%;height:1px;background:linear-gradient(to right,transparent,var(--gold-dim),transparent);vertical-align:middle}
   .divider span{color:var(--gold);font-size:1.2rem;padding:0 .8rem}
- 
+
   /* SECTION */
   .section{position:relative;z-index:1;max-width:760px;margin:0 auto;padding:0 1.2rem 2.5rem}
   .section-title{font-family:'Cinzel Decorative',serif;font-size:.85rem;letter-spacing:.18em;color:var(--ember-glow);text-transform:uppercase;margin-bottom:1.2rem;display:flex;align-items:center;gap:.7rem}
   .section-title::after{content:'';flex:1;height:1px;background:linear-gradient(to right,var(--ember),transparent);opacity:.4}
- 
+
   /* DUNGEON CARD */
   .dcard{background:var(--card-bg);border:1px solid var(--card-border);border-radius:2px;margin-bottom:1rem;overflow:hidden;animation:cardIn .5s cubic-bezier(.22,1,.36,1) both;transition:border-color .3s,box-shadow .3s}
   .dcard:hover{border-color:rgba(201,168,76,.4);box-shadow:0 4px 24px rgba(124,58,237,.1)}
   @keyframes cardIn{from{opacity:0;transform:translateY(18px) scale(.97)}to{opacity:1;transform:none}}
- 
+
   .dcard-head{display:flex;align-items:center;gap:.8rem;padding:.85rem 1.1rem;border-bottom:1px solid var(--card-border);cursor:pointer;user-select:none}
   .dcard-head:hover .dcard-title{color:var(--gold-light)}
   .dcard-icon{font-size:1.4rem;flex-shrink:0}
@@ -83,12 +83,12 @@
   .badge-done{color:var(--green);border:1px solid rgba(74,222,128,.3);background:rgba(74,222,128,.05)}
   .chevron{font-size:.8rem;color:var(--text-dim);transition:transform .3s}
   .dcard.open .chevron{transform:rotate(180deg)}
- 
+
   .dcard-body{display:none;padding:.85rem 1.1rem;border-top:1px solid rgba(201,168,76,.08)}
   .dcard.open .dcard-body{display:block}
- 
+
   .dcard-desc{font-size:.92rem;line-height:1.7;margin-bottom:.8rem;color:var(--text)}
- 
+
   /* BOSS LIST */
   .boss-list{list-style:none;margin-bottom:.7rem}
   .boss-list li{display:flex;gap:.55rem;align-items:flex-start;padding:.35rem 0;border-bottom:1px solid rgba(201,168,76,.06);font-size:.88rem;line-height:1.55}
@@ -99,13 +99,13 @@
   .green{color:var(--green)}
   .red{color:var(--red)}
   .blue{color:var(--blue)}
- 
+
   /* TAGS */
   .tags{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:.7rem}
   .tag{font-size:.62rem;padding:.15rem .6rem;border:1px solid var(--gold-dim);color:var(--gold-dim);letter-spacing:.1em;text-transform:uppercase;border-radius:2px;transition:all .2s}
   .tag:hover{color:var(--gold-light);border-color:var(--gold)}
   .tag.done{border-color:var(--green-dim);color:var(--green)}
- 
+
   /* SPOILER for delves */
   .spoiler-toggle{width:100%;background:none;border:none;border-top:1px solid var(--card-border);padding:.7rem 1.1rem;display:flex;align-items:center;justify-content:space-between;cursor:pointer;color:var(--text-dim);font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;transition:color .2s}
   .spoiler-toggle:hover{color:var(--gold)}
@@ -113,7 +113,7 @@
   .spoiler-toggle.open .arr{transform:rotate(180deg)}
   .spoiler-body{display:none;padding:.85rem 1.1rem;border-top:1px solid rgba(201,168,76,.08)}
   .spoiler-body.open{display:block}
- 
+
   /* DELVE ROW inside spoiler */
   .delve-row{display:flex;align-items:flex-start;gap:.6rem;padding:.5rem 0;border-bottom:1px solid rgba(201,168,76,.06);font-size:.88rem}
   .delve-row:last-child{border-bottom:none}
@@ -121,10 +121,10 @@
   .delve-row-info{flex:1}
   .delve-row-name{font-family:'Cinzel',serif;font-size:.85rem;color:var(--gold);margin-bottom:.15rem}
   .delve-row-desc{color:var(--text-dim);font-size:.82rem;line-height:1.5}
- 
+
   /* FOOTER */
   footer{position:relative;z-index:1;text-align:center;padding:1.5rem;color:var(--text-dim);font-size:.8rem;font-style:italic;border-top:1px solid rgba(201,168,76,.1);margin-top:.5rem}
- 
+
   @media(max-width:580px){
     .page-hero{padding:4.5rem 1rem 1.5rem}
     .section{padding:0 .8rem 2rem}
@@ -136,17 +136,17 @@
 </style>
 </head>
 <body>
- 
+
 <a class="nav-back" href="index.html">← <span>На главную</span></a>
 <button class="theme-toggle" id="themeToggle">🌙</button>
 <div id="particles"></div>
- 
+
 <div class="page-hero">
   <div class="hero-badge">⚔ Luntares · WoW: Midnight · Contributor</div>
   <h1>Мой вклад в проект</h1>
   <p class="sub">Подземелья · Рейды · Вылазки · Снифы → Разработка</p>
 </div>
- 
+
 <div class="status-wrap">
   <div class="status-box">
     <div class="status-icon">✅</div>
@@ -155,14 +155,28 @@
       <p>По всем перечисленным подземельям, рейдам и вылазкам проведён <strong>packet sniffing</strong> — записаны механики боссов, скрипты мобов, ивенты и лут. Все данные переданы команде Luntares для имплементации.</p>
     </div>
   </div>
+  <div class="status-box" style="margin-top:.6rem;background:linear-gradient(135deg,rgba(96,165,250,.08),rgba(59,130,246,.04));border-color:rgba(96,165,250,.32);">
+    <div class="status-icon">📦</div>
+    <div class="status-text">
+      <h3 style="color:var(--blue)">Реализовано: сбор данных подземелий и рейдов</h3>
+      <p>Завершён полный сбор данных по <strong style="color:var(--blue)">всем подземельям и рейдам</strong> WoW: Midnight — механики, NPC, диалоги, лут-таблицы, триггеры ивентов.</p>
+    </div>
+  </div>
+  <div class="status-box" style="margin-top:.6rem;background:linear-gradient(135deg,rgba(251,191,36,.07),rgba(245,158,11,.04));border-color:rgba(251,191,36,.28);">
+    <div class="status-icon">🔧</div>
+    <div class="status-text">
+      <h3 style="color:var(--gold)">В работе: Side Quest Chain</h3>
+      <p>Приступил к реализации <strong style="color:var(--gold)">цепочек побочных квестов</strong> (side quest chain) — скриптинг, условия выдачи, NPC-диалоги и награды.</p>
+    </div>
+  </div>
 </div>
- 
+
 <div class="divider"><span>⚔</span></div>
- 
+
 <!-- ══════════════ DUNGEONS ══════════════ -->
 <section class="section">
   <h2 class="section-title">Подземелья</h2>
- 
+
   <!-- Windrunner Spire -->
   <div class="dcard" id="d1">
     <div class="dcard-head" onclick="toggle('d1')">
@@ -188,7 +202,7 @@
       <div class="tags"><span class="tag">4 боссов</span><span class="tag">M+ S1</span><span class="tag">Eversong Woods</span><span class="tag done">✓ Отправлено</span></div>
     </div>
   </div>
- 
+
   <!-- Murder Row -->
   <div class="dcard" id="d2">
     <div class="dcard-head" onclick="toggle('d2')">
@@ -214,7 +228,7 @@
       <div class="tags"><span class="tag">4 боссов</span><span class="tag">Normal</span><span class="tag">Fel Smuggling</span><span class="tag done">✓ Отправлено</span></div>
     </div>
   </div>
- 
+
   <!-- Maisara Caverns -->
   <div class="dcard" id="d3">
     <div class="dcard-head" onclick="toggle('d3')">
@@ -239,7 +253,7 @@
       <div class="tags"><span class="tag">3 боссов</span><span class="tag">M+ S1</span><span class="tag">Zul'Aman</span><span class="tag done">✓ Отправлено</span></div>
     </div>
   </div>
- 
+
   <!-- Den of Nalorakk -->
   <div class="dcard" id="d4">
     <div class="dcard-head" onclick="toggle('d4')">
@@ -264,7 +278,7 @@
       <div class="tags"><span class="tag">3 боссов</span><span class="tag">Normal</span><span class="tag">Zul'Aman</span><span class="tag done">✓ Отправлено</span></div>
     </div>
   </div>
- 
+
   <!-- Nexus-Point Xenas -->
   <div class="dcard" id="d5">
     <div class="dcard-head" onclick="toggle('d5')">
@@ -289,14 +303,91 @@
       <div class="tags"><span class="tag">3 боссов</span><span class="tag">M+ S1</span><span class="tag">Voidstorm</span><span class="tag done">✓ Отправлено</span></div>
     </div>
   </div>
+
+  <!-- The Blinding Vale -->
+  <div class="dcard" id="d6">
+    <div class="dcard-head" onclick="toggle('d6')">
+      <div class="dcard-icon">🌿</div>
+      <div class="dcard-meta">
+        <div class="dcard-zone">Harandar · 26.8, 78.0 · lvl 88+</div>
+        <div class="dcard-title">The Blinding Vale</div>
+      </div>
+      <div class="dcard-right">
+        <span class="badge badge-dungeon">Dungeon</span>
+        <span class="badge badge-done">✓ Сниф</span>
+        <span class="chevron">▼</span>
+      </div>
+    </div>
+    <div class="dcard-body">
+      <p class="dcard-desc">Некогда процветающая экосистема, поглощённая агрессивным Lightbloom. Природа стала оружием — создания и хранители зоны превратились в агентов бесконтрольного роста. 4 босса. Heroic-only в S1, не входит в M+ ротацию. Особенность: биолюминесцентные циклы меняют видимость в каждом энкаунтере.</p>
+      <ul class="boss-list">
+        <li><span class="bi">🌸</span><span><span class="purple">Lightblossom Trinity (Meittik, Lekshi & Kezkitt)</span> — три босса с единым пулом здоровья. AoE и клив ускоряют бой. Lightblossom Beam — канал, накапливающий стаки при попадании.</span></li>
+        <li><span class="bi">🦅</span><span><span class="purple">Ikuzz the Light Hunter</span> — охотник Haranir. Spread при <span class="gold">Pulverizing Strikes</span> (конус), уходи от <span class="gold">Lightfire</span>-лучей — молчанка.</span></li>
+        <li><span class="bi">🌙</span><span><span class="purple">Lightwarden Ruia</span> — переключается между Moonkin и Bear. На 40% HP начинает Spirits of the Vale — каст всех спеллов залпом. Прерывай <span class="gold">Warden's Wrath</span> в Moonkin-форме.</span></li>
+        <li><span class="bi">🐛</span><span><span class="purple">Ziekket</span> — финальный босс. Дроп: косметика <span class="gold">Veilroot Fountain</span>, trinket <span class="gold">Sapling of the Dawnroot</span>, щит <span class="gold">Teldrassil's Sacrifice</span>.</span></li>
+      </ul>
+      <div class="tags"><span class="tag">4 боссов</span><span class="tag">Normal/Heroic</span><span class="tag">Harandar</span><span class="tag done">✓ Отправлено</span></div>
+    </div>
+  </div>
+
+  <!-- Magisters' Terrace -->
+  <div class="dcard" id="d7">
+    <div class="dcard-head" onclick="toggle('d7')">
+      <div class="dcard-icon">🏛</div>
+      <div class="dcard-meta">
+        <div class="dcard-zone">Isle of Quel'Danas · 63.4, 15.3 · lvl 90+</div>
+        <div class="dcard-title">Magisters' Terrace</div>
+      </div>
+      <div class="dcard-right">
+        <span class="badge badge-dungeon">Dungeon</span>
+        <span class="badge badge-done">✓ Сниф</span>
+        <span class="chevron">▼</span>
+      </div>
+    </div>
+    <div class="dcard-body">
+      <p class="dcard-desc">Переосмысленная версия культового данжа из TBC. В залах хранится Cynosure of Twilight — артефакт, открывающий путь в Voidstorm. Пустотная сущность Degentrius использовала просчёт Magister Umbric и захватила Террасу. M+ S1 ротация. 33-минутный таймер. Дроп: редкий маунт Lucent Hawkstrider.</p>
+      <ul class="boss-list">
+        <li><span class="bi">⚙</span><span><span class="purple">Arcanotron Custos</span> — аркановый конструкт. Прерывай ключевые касты, не стой в перекрывающихся AoE.</span></li>
+        <li><span class="bi">🗡</span><span><span class="purple">Seranel Sunlash</span> — подвижный солдат. Используй <span class="gold">Suppression Zone</span> для контроля механик. Держись в движении, уходи от фронталей.</span></li>
+        <li><span class="bi">🔀</span><span><span class="purple">Gemellus</span> — пустотное существо, создаёт клонов с общим пулом HP. Весь клив и AoE бьют всех клонов одновременно — free value.</span></li>
+        <li><span class="bi">🌑</span><span><span class="purple">Degentrius</span> — финальный босс. Делит комнату на две половины. Держи сплит-позиционирование. На Tyrannical — жёсткий DPS-чек на sub-30% + энрейдж. <span class="gold">Unstable Energy</span> — координируй снаряд.</span></li>
+      </ul>
+      <div class="tags"><span class="tag">4 боссов</span><span class="tag">M+ S1</span><span class="tag">Isle of Quel'Danas</span><span class="tag done">✓ Отправлено</span></div>
+    </div>
+  </div>
+
+  <!-- Voidscar Arena -->
+  <div class="dcard" id="d8">
+    <div class="dcard-head" onclick="toggle('d8')">
+      <div class="dcard-icon">🏟</div>
+      <div class="dcard-meta">
+        <div class="dcard-zone">Voidstorm · Slayer's Rise · 53.7, 34.0 · lvl 90+</div>
+        <div class="dcard-title">Voidscar Arena</div>
+      </div>
+      <div class="dcard-right">
+        <span class="badge badge-dungeon">Dungeon</span>
+        <span class="badge badge-done">✓ Сниф</span>
+        <span class="chevron">▼</span>
+      </div>
+    </div>
+    <div class="dcard-body">
+      <p class="dcard-desc">Самонадеянный эфириал Charonus собрал лучших воинов со всего космоса и заставляет их сражаться ради развлечения. Твоя группа — следующая в коллекции. 3 босса. Heroic-only в S1, не входит в M+ ротацию. Mechanically dense при коротком хронометраже.</p>
+      <ul class="boss-list">
+        <li><span class="bi">⚔</span><span><span class="purple">Taz'Rah</span> — прославленный чемпион доманааров, вынужден сражаться. Требует собственной смерти от каждого противника. Уходи от <span class="gold">Dark Rift</span> — затягивает внутрь.</span></li>
+        <li><span class="bi">🦕</span><span><span class="purple">Atroxus</span> — голодный колосс, заточённый Charonus. Размер почти так же опасен, как яд. Избегай <span class="gold">Noxious Breath</span>, не стой в лужах яда. Танки — мажорные дефенсивы.</span></li>
+        <li><span class="bi">👑</span><span><span class="purple">Charonus</span> — хозяин арены, финальный босс. Используй <span class="gold">Unstable Singularity</span> для очистки пустотных эффектов. Дроп: <span class="gold">Graft of the Domanaar</span> (neck), <span class="gold">Singularity Slicer</span> (warglaives).</span></li>
+      </ul>
+      <div class="tags"><span class="tag">3 боссов</span><span class="tag">Normal/Heroic</span><span class="tag">Voidstorm</span><span class="tag done">✓ Отправлено</span></div>
+    </div>
+  </div>
 </section>
- 
+
 <div class="divider"><span>⚔</span></div>
- 
+
 <!-- ══════════════ RAIDS ══════════════ -->
 <section class="section">
   <h2 class="section-title">Рейды</h2>
- 
+
   <!-- The Voidspire -->
   <div class="dcard" id="r1">
     <div class="dcard-head" onclick="toggle('r1')">
@@ -324,7 +415,7 @@
       <div class="tags"><span class="tag">6 боссов</span><span class="tag">LFR/Normal/HC/Mythic</span><span class="tag">Tier Tokens</span><span class="tag done">✓ Отправлено</span></div>
     </div>
   </div>
- 
+
   <!-- The Dreamrift -->
   <div class="dcard" id="r2">
     <div class="dcard-head" onclick="toggle('r2')">
@@ -348,22 +439,22 @@
     </div>
   </div>
 </section>
- 
+
 <div class="divider"><span>◈</span></div>
- 
+
 <!-- ══════════════ DELVES (spoiler) ══════════════ -->
 <section class="section">
   <h2 class="section-title">Вылазки</h2>
- 
+
   <div class="dcard" style="animation-delay:.1s">
     <div class="dcard-head" style="cursor:default">
       <div class="dcard-icon">🗡</div>
       <div class="dcard-meta">
-        <div class="dcard-zone">WoW: Midnight · Season 1</div>
-        <div class="dcard-title">4 вылазки — снифы выполнены</div>
+        <div class="dcard-zone">WoW: Midnight · Season 1 · 10 вылазок</div>
+        <div class="dcard-title">Все вылазки — снифы выполнены</div>
       </div>
       <div class="dcard-right">
-        <span class="badge badge-done">✓ 4 снифа</span>
+        <span class="badge badge-done">✓ 10 снифов</span>
       </div>
     </div>
     <button class="spoiler-toggle" id="sBtn" onclick="toggleSpoiler()">
@@ -371,7 +462,7 @@
       <span class="arr">▼</span>
     </button>
     <div class="spoiler-body" id="sBody">
- 
+
       <div class="delve-row">
         <div class="di">🌑</div>
         <div class="delve-row-info">
@@ -379,7 +470,7 @@
           <div class="delve-row-desc">Silvermoon City, северная пристань. Финальный босс — <span class="purple">Infiltrator Gulkat</span>. Механики: <span class="gold">Abyssal Burst</span> (конус), <span class="gold">Illusory Deceit</span> (иллюзии-бомбы). Ивенты: Focusers Under Pressure / Leyline Technician / Ogre Powered.</div>
         </div>
       </div>
- 
+
       <div class="delve-row">
         <div class="di">🕸</div>
         <div class="delve-row-info">
@@ -387,29 +478,77 @@
           <div class="delve-row-desc">Eversong Woods, Ruins of Deathholme. Финальный босс — <span class="purple">Lord Antenorian</span>. Механики: <span class="gold">Shadowveil Annihilation</span> (орбы-щиты), <span class="gold">Eyes of Antenorian</span> (патрули-наблюдатели).</div>
         </div>
       </div>
- 
+
+      <div class="delve-row">
+        <div class="di">🎓</div>
+        <div class="delve-row-info">
+          <div class="delve-row-name">Collegiate Calamity <span class="badge badge-done" style="margin-left:.4rem">✓</span></div>
+          <div class="delve-row-desc">Eversong Woods. Хаос в академии магов — студенты и артефакты вышли из-под контроля. Три варианта ивентов с разными фракциями.</div>
+        </div>
+      </div>
+
+      <div class="delve-row">
+        <div class="di">🌅</div>
+        <div class="delve-row-info">
+          <div class="delve-row-name">Parhelion Plaza <span class="badge badge-done" style="margin-left:.4rem">✓</span></div>
+          <div class="delve-row-desc">Isle of Quel'Danas, Sunwell Ramparts. Открылась 31 марта 2026 (Season 1). Захваченная площадь у Sunwell с тремя вариантами ивентов.</div>
+        </div>
+      </div>
+
+      <div class="delve-row">
+        <div class="di">🏚</div>
+        <div class="delve-row-info">
+          <div class="delve-row-name">Twilight Crypts <span class="badge badge-done" style="margin-left:.4rem">✓</span></div>
+          <div class="delve-row-desc">Zul'Aman. Древние крипты, захваченные культистами Twilight's Blade. Тёмные ритуалы и нежить.</div>
+        </div>
+      </div>
+
+      <div class="delve-row">
+        <div class="di">🦎</div>
+        <div class="delve-row-info">
+          <div class="delve-row-name">Atal'Aman <span class="badge badge-done" style="margin-left:.4rem">✓</span></div>
+          <div class="delve-row-desc">Zul'Aman. Руины троллей Амани, где лоа и старые духи сталкиваются с новой угрозой Пустоты.</div>
+        </div>
+      </div>
+
+      <div class="delve-row">
+        <div class="di">⚔</div>
+        <div class="delve-row-info">
+          <div class="delve-row-name">The Grudge Pit <span class="badge badge-done" style="margin-left:.4rem">✓</span></div>
+          <div class="delve-row-desc">Southern Quel'thalas, Harandar. Арена мести — пленники сражаются под принуждением. Три варианта ивентов.</div>
+        </div>
+      </div>
+
       <div class="delve-row">
         <div class="di">🌊</div>
         <div class="delve-row-info">
           <div class="delve-row-name">The Gulf of Memory <span class="badge badge-done" style="margin-left:.4rem">✓</span></div>
-          <div class="delve-row-desc">Harandar, западные пещеры. Финальный босс (один из вариантов) — <span class="purple">Mul'tha'ul</span> (Faceless One). Механики: <span class="gold">Hopeless Curse</span> (Shadow DoT + −40% скорости, прерывать), <span class="gold">Unanswered Call</span> (фиксация + щупальца).</div>
+          <div class="delve-row-desc">Harandar, западные пещеры. Два финальных босса (по варианту): <span class="purple">Lumenia</span> и <span class="purple">Mul'tha'ul</span> (Faceless One). Механики: <span class="gold">Hopeless Curse</span> (Shadow DoT + −40% скорости), механика мотыльков Alnmoth Storm.</div>
         </div>
       </div>
- 
+
+      <div class="delve-row">
+        <div class="di">💀</div>
+        <div class="delve-row-info">
+          <div class="delve-row-name">Sunkiller Sanctum <span class="badge badge-done" style="margin-left:.4rem">✓</span></div>
+          <div class="delve-row-desc">Voidstorm, пустотная зона. Святилище, поглощённое Пустотой. Три варианта ивентов с пустотными существами.</div>
+        </div>
+      </div>
+
       <div class="delve-row">
         <div class="di">🔮</div>
         <div class="delve-row-info">
           <div class="delve-row-name">Shadowguard Point <span class="badge badge-done" style="margin-left:.4rem">✓</span></div>
-          <div class="delve-row-desc">Voidstorm, восточная сторона моста. Финальный босс — <span class="purple">Chief-Arcanist Patram</span>. Механики: <span class="gold">Dark Communion</span> (Void Emissary — убей до Submit to the Void), <span class="gold">Discordant Hymn</span> (зоны пустоты).</div>
+          <div class="delve-row-desc">Voidstorm, 41.0, 54.0 — западный край зоны, севернее Abundant Voidburrow. Финальный босс — <span class="purple">Chief-Arcanist Patram</span>. Механики: <span class="gold">Dark Communion</span> (Void Emissary, убей до Submit to the Void → +20% Vers / +30% CDR), <span class="gold">Discordant Hymn</span> (зоны пустоты). 3 варианта ивентов + 3 Sturdy Chest.</div>
         </div>
       </div>
- 
+
     </div>
   </div>
 </section>
- 
+
 <footer>Данные получены методом packet sniffing · Luntares · WoW: Midnight</footer>
- 
+
 <script>
   // theme
   const btn=document.getElementById('themeToggle');
@@ -417,13 +556,13 @@
   applyTheme(saved);
   btn.addEventListener('click',()=>applyTheme(document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark'));
   function applyTheme(t){document.documentElement.setAttribute('data-theme',t);btn.textContent=t==='dark'?'☀️':'🌙';try{localStorage.setItem('theme',t)}catch(e){}}
- 
+
   // accordion
   function toggle(id){
     const el=document.getElementById(id);
     el.classList.toggle('open');
   }
- 
+
   // spoiler
   function toggleSpoiler(){
     const body=document.getElementById('sBody');
@@ -432,7 +571,7 @@
     btn.classList.toggle('open',isOpen);
     btn.querySelector('span:first-child').textContent=isOpen?'Скрыть детали вылазок':'Показать детали вылазок';
   }
- 
+
   // particles
   const pc=document.getElementById('particles');
   ['#7c3aed','#a855f7','#c9a84c','#e05c2a','#4ade80'].forEach(c=>{
@@ -443,7 +582,7 @@
       pc.appendChild(p);
     }
   });
- 
+
   // cursor glow
   if(window.matchMedia('(pointer:fine)').matches){
     const g=document.createElement('div');
