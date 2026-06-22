@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>С Днём Рождения, Даник! 🎉</title>
+    <style>
+        :root {
+            --bg: #0a0a1a;
+            --gold: #f4c542;
+            --pink: #ff6b9d;
+            --blue: #4ec0e8;
+            --purple: #a855f7;
+            --green: #4ade80;
+            --card-bg: #1a1a2e;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            background: var(--bg);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* ============ ЗВЁЗДНЫЙ ФОН ============ */
+        .stars-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle var(--dur) ease-in-out infinite;
+            animation-delay: var(--delay);
+            opacity: 0;
+        }
+        @keyframes twinkle {
+            0%,
+            100% {
+                opacity: 0.2;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.8);
+            }
+        }
+
+        /* ============ КОНФЕТТИ ============ */
+        .confetti-piece {
+            position: fixed;
+            z-index: 999;
+            pointer-events: none;
+            animation: confetti-fall var(--fall-dur) linear forwards;
+            animation-delay: var(--fall-delay);
+            opacity: 0;
+        }
+        @keyframes confetti-fall {
+            0% {
+                opacity: 1;
+                transform: translateY(-120vh) rotate(0deg) scale(1);
+            }
+            15% {
+                opacity: 1;
+            }
+            80% {
+                opacity: 0.7;
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(110vh) rotate(var(--rot)) scale(0.3);
+            }
+        }
+
+        /* ============ ОСНОВНОЙ КОНТЕЙНЕР ============ */
+        .main-wrapper {
+            position: relative;
+            z-index: 10;
+            width: 90vw;
+            max-width: 520px;
+            height: 75vh;
+            max-height: 700px;
+            perspective: 1200px;
+        }
+
+        /* ============ КАРТОЧКИ-СТРАНИЦЫ ============ */
+        .pages-stack {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+        }
+        .page {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 28px;
+            padding: 35px 28px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: var(--card-bg);
+            border: 2px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5), 0 0 80px rgba(164, 85, 247, 0.1);
+            transition: all 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+            backface-visibility: hidden;
+            cursor: pointer;
+            overflow-y: auto;
+            scrollbar-width: none;
+        }
+        .page::-webkit-scrollbar {
+            display: none;
+        }
+        .page.active {
+            transform: translateX(0) translateZ(0) rotateY(0deg);
+            opacity: 1;
+            z-index: 20;
+            pointer-events: auto;
+            border-color: rgba(255, 255, 255, 0.18);
+            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.6), 0 0 120px rgba(164, 85, 247, 0.25);
+        }
+        .page.prev {
+            transform: translateX(-35%) translateZ(-80px) rotateY(12deg);
+            opacity: 0.5;
+            z-index: 10;
+            pointer-events: none;
+            filter: brightness(0.6) blur(1px);
+        }
+        .page.next {
+            transform: translateX(35%) translateZ(-80px) rotateY(-12deg);
+            opacity: 0.5;
+            z-index: 10;
+            pointer-events: none;
+            filter: brightness(0.6) blur(1px);
+        }
+        .page.hidden-left {
+            transform: translateX(-60%) translateZ(-150px) rotateY(20deg);
+            opacity: 0;
+            z-index: 5;
+            pointer-events: none;
+            filter: brightness(0.3) blur(3px);
+        }
+        .page.hidden-right {
+            transform: translateX(60%) translateZ(-150px) rotateY(-20deg);
+            opacity: 0;
+            z-index: 5;
+            pointer-events: none;
+            filter: brightness(0.3) blur(3px);
+        }
+
+        /* ============ КОНТЕНТ СТРАНИЦ ============ */
+        .page-icon {
+            font-size: 70px;
+            margin-bottom: 15px;
+            animation: bounce-icon 1.2s ease-in-out infinite;
+            filter: drop-shadow(0 8px 20px rgba(255, 107, 157, 0.4));
+        }
+        @keyframes bounce-icon {
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-22px);
+            }
+            60% {
+                transform: translateY(-8px);
+            }
+        }
+        .page-title {
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #f4c542, #ff6b9d, #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 12px;
+            letter-spacing: 1px;
+        }
+        .page-subtitle {
+            font-size: 1.05rem;
+            color: #cbd5e1;
+            line-height: 1.6;
+            margin-bottom: 10px;
+            max-width: 90%;
+        }
+        .highlight-name {
+            font-size: 2.4rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #f4c542, #ff9a56, #ff6b9d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: inline-block;
+            animation: glow-pulse 2s ease-in-out infinite;
+        }
+        @keyframes glow-pulse {
+            0%,
+            100% {
+                filter: brightness(1);
+            }
+            50% {
+                filter: brightness(1.5);
+            }
+        }
+        .wish-list {
+            list-style: none;
+            text-align: left;
+            width: 100%;
+            padding: 0 10px;
+        }
+        .wish-list li {
+            padding: 10px 16px;
+            margin: 6px 0;
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 14px;
+            color: #e2e8f0;
+            font-size: 0.95rem;
+            border-left: 3px solid var(--gold);
+            transition: all 0.3s;
+        }
+        .wish-list li:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-left-color: var(--pink);
+            transform: translateX(4px);
+        }
+        .cake-emoji {
+            font-size: 100px;
+            animation: cake-wiggle 0.6s ease-in-out infinite alternate;
+        }
+        @keyframes cake-wiggle {
+            0% {
+                transform: rotate(-5deg);
+            }
+            100% {
+                transform: rotate(5deg);
+            }
+        }
+
+        /* ============ НАВИГАЦИЯ ============ */
+        .nav-dots {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 12px;
+            z-index: 100;
+            background: rgba(26, 26, 46, 0.7);
+            backdrop-filter: blur(12px);
+            padding: 12px 22px;
+            border-radius: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .nav-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.25);
+            cursor: pointer;
+            transition: all 0.4s;
+            border: none;
+            outline: none;
+        }
+        .nav-dot.active-dot {
+            background: var(--gold);
+            box-shadow: 0 0 18px var(--gold);
+            width: 32px;
+            border-radius: 20px;
+        }
+        .nav-arrows {
+            position: fixed;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 40px;
+            z-index: 100;
+        }
+        .nav-arrow {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(26, 26, 46, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: white;
+            font-size: 1.3rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            z-index: 100;
+        }
+        .nav-arrow:hover {
+            background: rgba(164, 85, 247, 0.4);
+            border-color: var(--purple);
+            box-shadow: 0 0 25px rgba(164, 85, 247, 0.4);
+        }
+        .swipe-hint {
+            position: fixed;
+            bottom: 150px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.8rem;
+            z-index: 100;
+            animation: fade-hint 3s ease-in-out infinite;
+            pointer-events: none;
+        }
+        @keyframes fade-hint {
+            0%,
+            100% {
+                opacity: 0.3;
+            }
+            50% {
+                opacity: 0.9;
+            }
+        }
+
+        /* ============ АДАПТИВ ============ */
+        @media (max-width: 500px) {
+            .page {
+                padding: 20px 16px;
+                border-radius: 22px;
+            }
+            .page-title {
+                font-size: 1.5rem;
+            }
+            .highlight-name {
+                font-size: 1.8rem;
+            }
+            .page-icon {
+                font-size: 50px;
+            }
+            .cake-emoji {
+                font-size: 70px;
+            }
+            .nav-arrows {
+                bottom: 85px;
+                gap: 25px;
+            }
+            .nav-dots {
+                bottom: 20px;
+                padding: 10px 16px;
+                gap: 8px;
+            }
+            .nav-dot {
+                width: 10px;
+                height: 10px;
+            }
+            .nav-dot.active-dot {
+                width: 26px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Звёздный фон -->
+    <div class="stars-container" id="starsContainer"></div>
+
+    <!-- Основной контейнер -->
+    <div class="main-wrapper" id="mainWrapper">
+        <div class="pages-stack" id="pagesStack">
+            <!-- Страница 1: Приветствие -->
+            <div class="page active" data-index="0">
+                <div class="page-icon">🎁</div>
+                <h1 class="page-title">С Днём Рождения!</h1>
+                <span class="highlight-name">Даник</span>
+                <p class="page-subtitle" style="margin-top:10px;">
+                    Сегодня самый особенный день — твой праздник!<br>
+                    Пусть этот день будет наполнен радостью, смехом и волшебством. ✨
+                </p>
+                <p style="color:#94a3b8; font-size:0.85rem; margin-top:8px;">Нажми на карточку или свайпни, чтобы продолжить ➤</p>
+            </div>
+
+            <!-- Страница 2: Пожелания -->
+            <div class="page" data-index="1">
+                <div class="page-icon">🌟</div>
+                <h2 class="page-title">Мои пожелания</h2>
+                <ul class="wish-list">
+                    <li>💪 <strong>Крепкого здоровья</strong> — чтоб энергии хватало на всё!</li>
+                    <li>😄 <strong>Искреннего счастья</strong> — каждый день с улыбкой.</li>
+                    <li>🚀 <strong>Больших успехов</strong> — во всех начинаниях и мечтах.</li>
+                    <li>💰 <strong>Финансового роста</strong> — пусть деньги любят тебя.</li>
+                    <li>❤️ <strong>Любви и тепла</strong> — от близких и родных людей.</li>
+                    <li>🌈 <strong>Ярких приключений</strong> — жизнь пусть будет сочной!</li>
+                </ul>
+            </div>
+
+            <!-- Страница 3: Торт и праздник -->
+            <div class="page" data-index="2">
+                <div class="cake-emoji">🎂</div>
+                <h2 class="page-title">Время задувать свечи!</h2>
+                <p class="page-subtitle">
+                    Представь самый огромный и вкусный торт.<br>
+                    Загадай желание — и оно <strong>обязательно сбудется</strong>! 🔮
+                </p>
+                <p style="color:#f4c542; font-size:1.1rem; font-weight:600; margin-top:5px;">
+                    Задувай! 💨🕯️🕯️🕯️
+                </p>
+                <p style="color:#94a3b8; font-size:0.8rem; margin-top:8px;">*нажми несколько раз для волшебства*</p>
+            </div>
+
+            <!-- Страница 4: Комплименты -->
+            <div class="page" data-index="3">
+                <div class="page-icon">🏆</div>
+                <h2 class="page-title">Ты — легенда!</h2>
+                <p class="page-subtitle">
+                    <strong>Даник</strong>, ты невероятный человек!<br>
+                    Твоя энергия заряжает всех вокруг.<br>
+                    Ты — <span style="color:#f4c542;">золото</span>, и пусть весь мир это видит!
+                </p>
+                <p style="color:#a855f7; font-size:1.3rem; margin-top:8px; font-weight:700;">
+                    ⭐ ⭐ ⭐ ⭐ ⭐
+                </p>
+                <p style="color:#cbd5e1; font-size:0.9rem;">5 звёзд из 5. Идеален!</p>
+            </div>
+
+            <!-- Страница 5: Финальная -->
+            <div class="page" data-index="4">
+                <div class="page-icon">🎉</div>
+                <h2 class="page-title">С праздником!</h2>
+                <span class="highlight-name" style="font-size:2rem;">Даник</span>
+                <p class="page-subtitle" style="margin-top:12px;">
+                    Пусть этот год принесёт тебе<br>
+                    всё самое лучшее, о чём ты мечтаешь.<br>
+                    Ты достоин самого большого счастья! 💖
+                </p>
+                <p style="color:#4ade80; font-size:1.1rem; font-weight:700; margin-top:8px;">
+                    С любовью и теплом! 🫶
+                </p>
+                <p style="color:#64748b; font-size:0.75rem; margin-top:10px;">↻ Пролистай обратно, чтобы перечитать</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Навигационные точки -->
+    <div class="nav-dots" id="navDots">
+        <button class="nav-dot active-dot" data-dot="0" aria-label="Страница 1"></button>
+        <button class="nav-dot" data-dot="1" aria-label="Страница 2"></button>
+        <button class="nav-dot" data-dot="2" aria-label="Страница 3"></button>
+        <button class="nav-dot" data-dot="3" aria-label="Страница 4"></button>
+        <button class="nav-dot" data-dot="4" aria-label="Страница 5"></button>
+    </div>
+
+    <!-- Стрелки -->
+    <div class="nav-arrows">
+        <button class="nav-arrow" id="prevBtn" aria-label="Назад">◀</button>
+        <button class="nav-arrow" id="nextBtn" aria-label="Вперёд">▶</button>
+    </div>
+    <div class="swipe-hint" id="swipeHint">↔ свайп или стрелки</div>
+
+    <script>
+        (function() {
+            // ============ ЗВЁЗДЫ ============
+            const starsContainer = document.getElementById('starsContainer');
+            for (let i = 0; i < 130; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                const size = Math.random() * 3 + 1;
+                star.style.width = size + 'px';
+                star.style.height = size + 'px';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.setProperty('--dur', (Math.random() * 3 + 2) + 's');
+                star.style.setProperty('--delay', (Math.random() * 5) + 's');
+                starsContainer.appendChild(star);
+            }
+
+            // ============ СТРАНИЦЫ ============
+            const pages = document.querySelectorAll('.page');
+            const dots = document.querySelectorAll('.nav-dot');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const swipeHint = document.getElementById('swipeHint');
+            const totalPages = pages.length;
+            let currentIndex = 0;
+            let isTransitioning = false;
+
+            function updatePages(newIndex) {
+                if (isTransitioning || newIndex === currentIndex) return;
+                if (newIndex < 0 || newIndex >= totalPages) return;
+                isTransitioning = true;
+                currentIndex = newIndex;
+
+                pages.forEach((page, i) => {
+                    page.classList.remove('active', 'prev', 'next', 'hidden-left', 'hidden-right');
+                    if (i === currentIndex) {
+                        page.classList.add('active');
+                    } else if (i === currentIndex - 1) {
+                        page.classList.add('prev');
+                    } else if (i === currentIndex + 1) {
+                        page.classList.add('next');
+                    } else if (i < currentIndex) {
+                        page.classList.add('hidden-left');
+                    } else {
+                        page.classList.add('hidden-right');
+                    }
+                });
+
+                // Обновляем точки
+                dots.forEach((dot, i) => {
+                    dot.classList.toggle('active-dot', i === currentIndex);
+                });
+
+                // Скрываем подсказку после первого перелистывания
+                if (currentIndex > 0 && swipeHint.style.opacity !== '0') {
+                    swipeHint.style.transition = 'opacity 0.8s';
+                    swipeHint.style.opacity = '0';
+                    setTimeout(() => { swipeHint.textContent = ''; }, 800);
+                }
+
+                setTimeout(() => {
+                    isTransitioning = false;
+                }, 500);
+            }
+
+            function goNext() {
+                if (currentIndex < totalPages - 1) {
+                    updatePages(currentIndex + 1);
+                    if (currentIndex === 2) spawnConfettiBurst();
+                }
+            }
+
+            function goPrev() {
+                if (currentIndex > 0) {
+                    updatePages(currentIndex - 1);
+                }
+            }
+
+            // Кнопки
+            nextBtn.addEventListener('click', goNext);
+            prevBtn.addEventListener('click', goPrev);
+
+            // Точки
+            dots.forEach(dot => {
+                dot.addEventListener('click', () => {
+                    const target = parseInt(dot.getAttribute('data-dot'));
+                    if (target !== currentIndex) {
+                        updatePages(target);
+                        if (target === 2) spawnConfettiBurst();
+                    }
+                });
+            });
+
+            // Клик по активной странице — перелистнуть вперёд
+            document.getElementById('pagesStack').addEventListener('click', (e) => {
+                const activePage = document.querySelector('.page.active');
+                if (activePage && e.target.closest('.page') === activePage) {
+                    if (currentIndex < totalPages - 1) {
+                        goNext();
+                    } else {
+                        // На последней странице — зациклить на первую
+                        updatePages(0);
+                    }
+                }
+            });
+
+            // Свайп (touch)
+            let touchStartX = 0;
+            let touchEndX = 0;
+            const wrapper = document.getElementById('mainWrapper');
+
+            wrapper.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            }, { passive: true });
+
+            wrapper.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                const diff = touchStartX - touchEndX;
+                const threshold = 50;
+                if (Math.abs(diff) > threshold) {
+                    if (diff > 0) {
+                        goNext();
+                    } else {
+                        goPrev();
+                    }
+                }
+            });
+
+            // Клавиатура
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+                    e.preventDefault();
+                    goNext();
+                } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+                    e.preventDefault();
+                    goPrev();
+                }
+            });
+
+            // ============ КОНФЕТТИ ============
+            function spawnConfettiBurst() {
+                const colors = [
+                    '#f4c542', '#ff6b9d', '#4ec0e8', '#a855f7', '#4ade80',
+                    '#ff9a56', '#ff4757', '#2ed573', '#ffda79', '#ff6b81',
+                    '#7bed9f', '#70a1ff', '#ffa502', '#eccc68', '#ff6348'
+                ];
+                const shapes = ['■', '●', '▲', '★', '♦', '❤', '✨', '🎉'];
+
+                for (let i = 0; i < 80; i++) {
+                    const piece = document.createElement('span');
+                    piece.classList.add('confetti-piece');
+                    piece.textContent = shapes[Math.floor(Math.random() * shapes.length)];
+                    piece.style.left = Math.random() * 100 + '%';
+                    piece.style.top = -(Math.random() * 20 + 5) + '%';
+                    piece.style.fontSize = (Math.random() * 18 + 10) + 'px';
+                    piece.style.color = colors[Math.floor(Math.random() * colors.length)];
+                    piece.style.setProperty('--fall-dur', (Math.random() * 2.5 + 2.5) + 's');
+                    piece.style.setProperty('--fall-delay', (Math.random() * 0.6) + 's');
+                    piece.style.setProperty('--rot', (Math.random() * 720 - 360) + 'deg');
+                    document.body.appendChild(piece);
+
+                    // Удаляем после анимации
+                    const dur = parseFloat(piece.style.getPropertyValue('--fall-dur')) + parseFloat(piece.style
+                        .getPropertyValue('--fall-delay'));
+                    setTimeout(() => {
+                        if (piece.parentNode) piece.parentNode.removeChild(piece);
+                    }, dur * 1000 + 200);
+                }
+            }
+
+            // Автоматический запуск конфетти при загрузке (на первой странице — лёгкий)
+            setTimeout(() => {
+                const lightConfetti = () => {
+                    const colors = ['#f4c542', '#ff6b9d', '#4ec0e8', '#a855f7', '#4ade80'];
+                    for (let i = 0; i < 25; i++) {
+                        const piece = document.createElement('span');
+                        piece.classList.add('confetti-piece');
+                        piece.textContent = '✨';
+                        piece.style.left = Math.random() * 100 + '%';
+                        piece.style.top = -(Math.random() * 15 + 3) + '%';
+                        piece.style.fontSize = (Math.random() * 14 + 8) + 'px';
+                        piece.style.color = colors[Math.floor(Math.random() * colors.length)];
+                        piece.style.setProperty('--fall-dur', (Math.random() * 3 + 3) + 's');
+                        piece.style.setProperty('--fall-delay', (Math.random() * 1.5) + 's');
+                        piece.style.setProperty('--rot', (Math.random() * 500 - 250) + 'deg');
+                        document.body.appendChild(piece);
+                        const dur = parseFloat(piece.style.getPropertyValue('--fall-dur')) + parseFloat(piece.style
+                            .getPropertyValue('--fall-delay'));
+                        setTimeout(() => {
+                            if (piece.parentNode) piece.parentNode.removeChild(piece);
+                        }, dur * 1000 + 200);
+                    }
+                };
+                lightConfetti();
+                // Повторяем лёгкие конфетти каждые 8 секунд
+                setInterval(lightConfetti, 8000);
+            }, 600);
+
+            // Дополнительный burst при клике на страницу с тортом
+            document.addEventListener('click', (e) => {
+                const cakePage = document.querySelector('.page[data-index="2"]');
+                if (cakePage && cakePage.classList.contains('active') && e.target.closest('.page[data-index="2"]')) {
+                    spawnConfettiBurst();
+                }
+            });
+
+            // Инициализация — все страницы кроме первой скрыты
+            updatePages(0);
+
+            console.log('🎉 С Днём Рождения, Даник! 🎂');
+            console.log('✨ Пусть этот день будет самым лучшим! ✨');
+        })();
+    </script>
+</body>
+</html>
